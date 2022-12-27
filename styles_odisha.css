@@ -1,0 +1,111 @@
+body {
+    background-color: rgb(16, 16, 181);
+}
+
+header h1{
+    color: white;
+    text-align: center;
+    font-size: 40px;
+}
+
+div.dd1 {
+    text-align: center;
+    padding: 20px;
+    font-size: 20px;
+}
+
+div.dd3 {
+    display: none;
+    position: unset;
+    background-color: #f9f9f9;
+    width: 75%;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+div.dd3 a {
+    padding: 12px 16px;
+    color: black;
+    display: block;
+    text-decoration: none;
+    text-align: center;
+}
+
+button.dd2 {
+    cursor: pointer;
+}
+
+div.dd3 a:hover {
+    background-color: #f1f1f1;
+}
+
+div.dd1:hover .dd3 {
+    display: block;
+    text-align: center;
+}
+
+div.dd1:hover .dd2 {
+    background-color: rgba(255, 255, 255, 0.793);
+}
+
+.box {
+    border: 1px solid lightblue;
+    color: lightblue;
+    background-color: black;
+    opacity: 0.6;
+    padding: 15px;
+    width: fit-content;
+    border-radius: 5%;
+    font-size: 50px;
+    margin: 0 auto;
+    width: 75%;
+    height: 700px;
+}
+
+footer {
+background-color: #333;
+overflow: hidden;
+}
+
+footer a {
+text-decoration: none;
+padding: 20px;
+text-align: center;
+float: left;
+color: white;
+}
+
+section{
+background-color: orange;
+text-align: center;
+
+}
+
+nav {
+background-color: #333;
+overflow: hidden;
+}
+
+nav a{
+color: white;
+float: left;
+text-decoration: none;
+padding: 20px;
+text-align: center;
+}
+
+nav a:hover{
+background-color: #111;
+border: 2px solid rgb(155, 0, 0);
+border-radius: 100px;
+}
+
+#search {
+    font-size: 25px;
+    padding: 10px;
+    border-radius: 25px;
+    border: none;
+    outline: none;
+    box-shadow: 0px 0px 5px grey;
+    
+}

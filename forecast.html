@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="styles_odisha.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odisha Weather Forecast</title>
+</head>
+
+<body>
+    <header>
+        <h1>WORLD WEATHER FORECAST</h1>
+    </header>
+    <nav>
+        <a href="index.html" target="_blank">Home</a>
+        <a href="#contact">Contact</a>
+        <a href="search.html" target="_blank">See forecast</a>
+    </nav>
+    <br>
+    <form action="">
+        <input type="search" id="search" placeholder="Search by city name" style="text-align: center;">
+    </form>
+    <br>
+    <div class="box">
+        <p id="date">Tue | DEC 27 | 1:30PM</p>
+        
+        <div id="weather">
+            <!--<p class="temp">{%tempval%}</p>
+            <p class="pressure">{%pressureval%}</p>
+            <p class="humidity">{%humidityval%}</p>
+            <p class="temp_max">MIN {%tempin%} | MAX {%tempmax%}</p>-->
+        </div>
+    </div>
+    <section>
+        <h3> Our Founder
+        </h3>
+        <h3>VASANT KUMAR SHARMA</h3>
+    </section>
+    </main>
+
+    <footer>
+        <a href="#">FAQ</a>
+        <a href="#">Contact Us</a>
+        <a href="#">Terms of Use</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">&copy; 2022 | WEB_CODERZ</a>
+    </footer>
+    <script>
+        const curDate = document.getElementById("date");
+        let weathercon = document.getElementById("weathercon");
+
+        const tempStatus = "Clouds";
+
+        const getCurrentDay = () => {
+            var weekday = new Array(7);
+            weekday[0] = "Sun";
+            weekday[1] = "Mon";
+            weekday[2] = "Tue";
+            weekday[3] = "Wed";
+            weekday[4] = "Thu";
+            weekday[5] = "Fri";
+            weekday[6] = "Sat";
+
+            let currentTime = new Date();
+            let day = weekday[currentTime.getDay()];
+            return day;
+        }
+
+        const getCurrentTime = () => {
+            var months = new Array(12);
+            months[0] = "JAN";
+            months[1] = "FEB";
+            months[2] = "MAR";
+            months[3] = "APR";
+            months[4] = "MAY";
+            months[5] = "JUN";
+            months[6] = "JUL";
+            months[7] = "AUG";
+            months[8] = "SEPT";
+            months[9] = "OCT";
+            months[10] = "NOV";
+            months[11] = "DEC";
+
+            let now = new Date();
+            var month = months[now.getMonth()];
+            //console.log(now.getMonth());
+            var date = now.getDate();
+
+            let hours = now.getHours();
+            let mins = now.getMinutes();
+
+            let periods = "AM";
+
+            if (hours > 11) {
+                periods = "PM";
+                if (hours > 12) {
+                    hours -= 12;
+                }
+            }
+            if (mins < 10) {
+                mins = "0" + mins;
+            }
+            return `${month} ${date} | ${hours}:${mins}${periods}`;
+        };
+        curDate.innerHTML = getCurrentDay() + " | " + getCurrentTime();
+
+        const form = document.querySelector("form");
+        const search = document.getElementById("search");
+        //const search = document.querySelector("#search");
+        const weather = document.getElementById("weather");
+        
+        const getWeather = async (city) => {
+            const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=71ecf66646393e927950c5db7b07a7a3`
+            const response = await fetch(url);
+            const data = await response.json()
+            return showWeather(data);
+        };
+
+        const showWeather = (data) => {
+            console.log(data);
+            weather.innerHTML = `
+    <p class="temp">Temperature: ${(data.main.temp-273.15).toFixed(1)} °C</p><p class="pressure">${data.weather[0].main}</p>
+    <p class="pressure">Pressure: ${data.main.pressure}</p>
+    <p class="humidity">Humidity: ${data.main.humidity}%</p>
+    <p class="temp_max">MIN ${(data.main.temp_min-273.15).toFixed(1)} °C | MAX ${(data.main.temp_max-273.15).toFixed(1)} °C</p>
+    `
+        }
+        form.addEventListener(
+            "submit",
+            function (event) {
+                getWeather(search.value);
+                event.preventDefault();
+            }
+        )
+        
+
+    </script>
+</body>
+</html>
